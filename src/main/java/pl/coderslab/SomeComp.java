@@ -2,6 +2,7 @@ package pl.coderslab;
 
 
 import org.springframework.stereotype.Component;
+import pl.coderslab.Smurf;
 
 import java.util.ArrayList;
 import java.util.List;

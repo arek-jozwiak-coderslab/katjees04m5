@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class HomeController {
 
@@ -21,16 +23,29 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value = "/home",method = RequestMethod.GET)
+    @RequestMapping("/helloView")
+    public String helloView(Model model) {
+        LocalDateTime now = LocalDateTime.now();
+        if (now.getHour() > 8 && now.getHour() < 20) {
+            model.addAttribute("color", "black");
+            model.addAttribute("backgroundColor", "white");
+        } else {
+            model.addAttribute("color", "white");
+            model.addAttribute("backgroundColor", "black");
+        }
+        return "home";
+    }
+
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     @GetMapping("/home")
-    public String index(){
+    public String index() {
         System.out.println(someComp.getList());
         return "/views/home";
     }
 
     @RequestMapping("/home1")
     @ResponseBody
-    public String index2(){
+    public String index2() {
         return "some return";
     }
 
